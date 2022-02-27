@@ -1,0 +1,122 @@
+<html>
+
+<body>
+    <style>
+        fieldset {
+            width: 60%;
+            background-color: rgb(141, 155, 155);
+        }
+
+        input[type=text] {
+            width: 50%;
+            padding: 5px 5px;
+            margin-left: 8px;
+        }
+
+        .l {
+            color: black;
+            font-size: 25px;
+            text-shadow: 2px 1px rgb(207, 212, 224);
+        }
+
+        .button {
+            background-color: #c6d0fc;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 32px;
+            font-size: 16px;
+        }
+
+        form {
+            display: flex;
+            /*so that content visible to center*/
+            justify-content: center;
+        }
+
+        .button:hover {
+            transition: 2s;
+            color: white;
+            background-color: green;
+            cursor: pointer;
+        }
+    </style>
+    <SCRIPT type="text/javascript">
+        function validate(thisform) {
+            if (thisform.fname.value == "") {
+                alert("Enter First Name");
+                thisform.fname.focus();
+                return false;
+            } 
+            if (thisform.lname.value == "") {
+                alert("Enter Last Name");
+                thisform.lname.focus();
+                return false;
+            }
+            if(thisform.age.value == 0){
+                alert("Please Enter Age ");
+                thisform.age.focus();
+                return false;
+            }
+            if(new String(thisform.contact.value).length !=10){
+                alert("please Enter phone at 10 digit");
+                return false;
+            }
+
+            var txtEmail = thisform.email.value;
+            var illegalChars = /[\(\)\<\>\,\;\:\\\/\"\[\]]/;
+            var n1 = txtEmail.indexOf("@");
+            var n2 = txtEmail.lastIndexOf(".");
+            if (txtEmail == "") {
+                alert("Enter the Email address");
+                thisform.email.focus();
+                return false;
+            }
+            if (txtEmail.match(illegalChars)) {
+                alert("Invalid Email address");
+                thisform.email.focus();
+                return false;
+            }
+            if (n1 < 1 || n2 - n1 < 2) {
+                alert("Invalid Email address");
+                thisform.email.focus();
+                return false;
+            }
+            if(thisform.password1.value != thisform.password2.value  ){
+                alert("Both password are not match");
+                thisform.password1.focus();
+                return false;
+            }
+
+            return true;
+        }
+    </SCRIPT>
+    <h2 style="color:rgb(109, 109, 204);  margin-left: 40%;">Welcome to Shivam Form</h2>
+
+    <form action="input_database.php" method="post" onsubmit="return validate(this)">
+        <fieldset>
+            <legend class="l">Student Form:</legend>
+            <label>First name:</label>
+            <input type="text" name="fname"><br><br>
+
+            <label>Last name:</label>
+            <input type="text" name="lname"><br><br>
+
+            <label>Age:</label>
+            <input type="number" min="0"  name="age"><br><br>
+
+            <label  >Conatct:</label>
+            <input type="number"  name="contact"><br><br>
+
+            <label >Email:</label>
+            <input type="text" name="email"><br><br>
+
+            <label>Password:</label>
+            <input type="password"  name="password1"><br><br>
+            <label>Re:Enter:</label>
+            <input type="password"  name="password2"><br><br>
+            <input type="submit" class="button" value="Submit">
+        </fieldset>
+    </form>
+</body>
+
+</html>
